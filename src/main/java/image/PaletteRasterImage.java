@@ -6,10 +6,9 @@ import util.Matrices;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PaletteRasterImage implements Image {
+public class PaletteRasterImage extends RasterImage implements Image {
 
-    private int width;
-    private int height;
+
     private List<Color> palette;
     private int[][] indexesOfColors;
 
@@ -17,12 +16,7 @@ public class PaletteRasterImage implements Image {
         this.height = height;
         this.width = width;
         createRepresentation();
-        palette.add(color);
-        for(int i = 0 ; i < width ; i++ ){
-            for(int j =  0 ; j < height ; j++){
-                indexesOfColors[i][j] = 0;
-            }
-        }
+        setPixelsColor(color);
     }
 
     public PaletteRasterImage(Color[][] pixels) {
@@ -33,15 +27,8 @@ public class PaletteRasterImage implements Image {
         System.out.println(pixels[0].length);
 
 
-        for (int i = 0; i < this.width; i++) {
-            for (int j = 0; j < this.height; j++) {
-
-                setPixelColor(pixels[i][j],i,j);
-
-
-                }
-            }
-        }
+        setPixelsColor(pixels);
+    }
 
 
     public void createRepresentation(){
@@ -49,21 +36,7 @@ public class PaletteRasterImage implements Image {
         this.indexesOfColors = new int[this.width][this.height];
     }
 
-    public void setPixelsColor(Color color){
-        palette.add(color);
-        for(int i = 0 ; i < width ; i++ ){
-            for(int j =  0 ; j < height ; j++){
-                indexesOfColors[i][j] = 0;
-            }
-        }
-    }
-    public void setPixelsColor(Color[][] pixels){
-        for (int i = 0; i < this.width; i++) {
-            for (int j = 0; j < this.height; j++) {
-                setPixelColor(pixels[i][j] , i , j);
-            }
-        }
-    }
+   @Override
     public void setPixelColor(Color color, int x, int y){
         if(!palette.contains(color)) {
             palette.add(color);
@@ -74,24 +47,7 @@ public class PaletteRasterImage implements Image {
     }
 
     public Color getPixelColor(int x, int y){
-        int index = indexesOfColors[x][y];
-        return palette.get(index);
+        return palette.get(indexesOfColors[x][y]);
     }
 
-
-    @Override
-    public int getWidth() {
-        return this.width;
-    }
-    public void setWidth(int width){
-        this.width = width;
-    }
-
-    @Override
-    public int getHeight() {
-        return this.height;
-    }
-    public void setHeight(int height){
-        this.height = height;
-    }
 }
