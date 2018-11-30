@@ -11,5 +11,5 @@ On va considérer quatre manières de représenter une image en couleur et donc 
 
 ## Membres du projet
 
-- HENIS Fayçal , GROUPE 2 
+- HENIS Fayçal , GROUPE 2   
 - JEANNETON Laura , GROUPE 2
