@@ -6,13 +6,12 @@ import util.Matrices;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PaletteRasterImage extends RasterImage implements Image {
+public class PaletteRasterImage extends RasterImage  {
 
     private List<Color> palette;
     private int[][] indexesOfColors;
 
     public PaletteRasterImage(Color color , int width , int height) {
-
         super(color,width,height);
     }
 
@@ -28,7 +27,6 @@ public class PaletteRasterImage extends RasterImage implements Image {
 
    @Override
     public void setPixelColor(Color color, int x, int y){
-
         if(!palette.contains(color)) {
             palette.add(color);
             indexesOfColors[x][y] = palette.indexOf(color);
@@ -38,7 +36,6 @@ public class PaletteRasterImage extends RasterImage implements Image {
     }
 
     public Color getPixelColor(int x, int y){
-
         return palette.get(indexesOfColors[x][y]);
     }
 
