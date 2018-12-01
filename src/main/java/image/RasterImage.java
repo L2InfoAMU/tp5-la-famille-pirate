@@ -7,8 +7,6 @@ public abstract class RasterImage implements Image {
     protected int width;
     protected int height;
 
-
-
     public abstract void createRepresentation();
     public abstract void setPixelColor(Color color, int x, int y);
 
